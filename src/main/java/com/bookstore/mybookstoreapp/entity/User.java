@@ -5,6 +5,7 @@ import lombok.ToString;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
+import java.util.Date;
 import java.util.Set;
 
 @Entity
@@ -30,6 +31,7 @@ public class User {
 //    groups = UserRegisterValidationGroup.class, message = "Password needs to be between 4 - 200 characters.")
     private String password;
 
+    private Date joined;
 
     @OneToMany(mappedBy = "user")
     private Set <Review> reviews; // user ma set swoich review
@@ -69,6 +71,10 @@ public class User {
         return password;
     }
 
+    public Date getJoined() {
+        return joined;
+    }
+
     public Set<Review> getReviews() {
         return reviews;
     }
@@ -94,6 +100,10 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public void setJoined(Date joined) {
+        this.joined = joined;
     }
 
     public void setReviews(Set<Review> reviews) {
