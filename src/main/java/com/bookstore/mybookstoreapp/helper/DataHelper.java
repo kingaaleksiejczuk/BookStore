@@ -22,7 +22,7 @@ public class DataHelper {
     }
 
     public void setAppContext(String appContext, Model model) {
-        model.addAttribute("appContext", appContext);
+//        model.addAttribute("appContext", appContext);
     }
 
     public void saveNewUser(User user){
