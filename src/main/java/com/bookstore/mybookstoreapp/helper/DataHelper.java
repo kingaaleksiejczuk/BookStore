@@ -3,7 +3,6 @@ package com.bookstore.mybookstoreapp.helper;
 import com.bookstore.mybookstoreapp.entity.Role;
 import com.bookstore.mybookstoreapp.entity.User;
 import com.bookstore.mybookstoreapp.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Component;
 import org.springframework.ui.Model;
