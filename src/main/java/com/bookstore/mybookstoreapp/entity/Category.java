@@ -10,9 +10,6 @@ import javax.validation.constraints.Size;
 import java.util.Set;
 
 @Entity
-@EqualsAndHashCode
-@Getter
-@NoArgsConstructor
 public class Category {
 
     @Id
@@ -26,11 +23,25 @@ public class Category {
     @OneToMany
     private Set <Book> books;
 
+    public Category(){};
+
     public void setCategoryName(String categoryName) {
         this.categoryName = categoryName;
     }
 
     public void setBooks(Set<Book> books) {
         this.books = books;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getCategoryName() {
+        return categoryName;
+    }
+
+    public Set<Book> getBooks() {
+        return books;
     }
 }

@@ -11,4 +11,5 @@ public interface VoteService {
 
     List<Vote> getVoteByUser(User user);
 
+    List<Vote> getVotedByUser(User user);
 }

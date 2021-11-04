@@ -1,5 +1,6 @@
 package com.bookstore.mybookstoreapp.entity;
 
+import com.bookstore.mybookstoreapp.dto.BookDTO;
 import com.bookstore.mybookstoreapp.dto.ReviewDTO;
 import lombok.EqualsAndHashCode;
 
@@ -22,6 +23,10 @@ public class Vote {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "review_id")
     private Review review;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "book_id")
+    private Book book;
 
     public Vote() {
     }
@@ -50,6 +55,9 @@ public class Vote {
         this.user = user;
     }
 
+    public boolean isVoteForBook(BookDTO book) {
+        return this.book == book.getBook();
+    }
     public boolean isVoteForReview(ReviewDTO review) {
         return this.review == review.getReview();
     }

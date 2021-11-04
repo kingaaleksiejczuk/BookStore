@@ -21,4 +21,9 @@ public class VoteServiceImpl implements VoteService {
     public List<Vote> getVoteByUser(User user) {
         return voteRepository.findAllByUser(user);
     }
+
+    @Override
+    public List<Vote> getVotedByUser(User user) {
+        return voteRepository.findAllByUser(user);
+    }
 }

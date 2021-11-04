@@ -23,7 +23,7 @@ public class ReviewServiceImpl implements ReviewService {
 
     @Override
     public List<Review> getAllFromNewest() {
-        return reviewRepository.finAllByOrderByCreatedDesc();
+        return reviewRepository.findAllByOrderByDateDesc();
     }
 
     @Override

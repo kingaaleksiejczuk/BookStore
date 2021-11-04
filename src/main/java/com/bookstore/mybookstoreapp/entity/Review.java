@@ -1,5 +1,6 @@
 package com.bookstore.mybookstoreapp.entity;
 
+import com.bookstore.mybookstoreapp.dto.ReviewDTO;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
@@ -7,7 +8,6 @@ import lombok.ToString;
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.util.Date;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -17,6 +17,7 @@ import java.util.Set;
 public class Review {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne(fetch = FetchType.EAGER)
@@ -86,4 +87,11 @@ public class Review {
     public void setDate(Date date) {
         this.date = date;
     }
+
+    public static ReviewDTO mapToReviewDTO(Review review) {
+        ReviewDTO reviewDTO = new ReviewDTO();
+        reviewDTO.setReview(review);
+        return reviewDTO;
+    }
+
 }

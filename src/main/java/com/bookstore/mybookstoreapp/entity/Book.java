@@ -1,14 +1,9 @@
 package com.bookstore.mybookstoreapp.entity;
 
-import lombok.*;
-import org.springframework.stereotype.Controller;
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
+import java.util.List;
 
 @Entity
 public class Book {
@@ -32,11 +27,14 @@ public class Book {
     @NotEmpty
     private String title;
 
-    @Size(min = 1)
-    @NotEmpty
-    private String category;
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name = "category_id", nullable = false)
+    private Category category;
 
     private String photo;
+
+    @OneToMany(mappedBy = "book")
+    private List<Review> reviews;
 
     public Book() {
     }
@@ -57,7 +55,7 @@ public class Book {
         this.title = title;
     }
 
-    public void setCategory(String category) {
+    public void setCategory(Category category) {
         this.category = category;
     }
 
@@ -85,11 +83,18 @@ public class Book {
         return title;
     }
 
-    public String getCategory() {
+    public Category getCategory() {
         return category;
     }
-
     public String getPhoto() {
         return photo;
+    }
+
+    public List<Review> getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(List<Review> reviews) {
+        this.reviews = reviews;
     }
 }

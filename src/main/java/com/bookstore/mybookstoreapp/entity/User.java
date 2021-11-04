@@ -36,6 +36,7 @@ public class User {
     @OneToMany(mappedBy = "user")
     private Set <Review> reviews; // user ma set swoich review
 
+
     @ElementCollection(fetch = FetchType.EAGER)
     @Enumerated(EnumType.STRING)
     private Set<Role> roles;
@@ -45,6 +46,14 @@ public class User {
     @Transient
     private int logged;
 
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "user_category", joinColumns = {@JoinColumn(name = "user_id")}, inverseJoinColumns = {@JoinColumn(name = "category_id")})
+    private Set<Category> categories;                   // user ma subskrypcje do categorii (many to many)
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "users_subs", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "sub_id"))
+    private Set<User> subbedToUsers;
+
     public User(){}
 
     public User(User user) {
@@ -53,6 +62,22 @@ public class User {
         this.username = user.getUsername();
         this.password = user.getPassword();
         this.roles = user.getRoles();
+    }
+
+    public Set<Category> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(Set<Category> categories) {
+        this.categories = categories;
+    }
+
+    public Set<User> getSubbedToUsers() {
+        return subbedToUsers;
+    }
+
+    public void setSubbedToUsers(Set<User> subbedToUsers) {
+        this.subbedToUsers = subbedToUsers;
     }
 
     public Long getId() {
